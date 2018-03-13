@@ -1,0 +1,42 @@
+Bubble Sort
+
+reference from : https://www.geeksforgeeks.org/bubble-sort/
+                 http://blog.csdn.net/shuaizai88/article/details/73250615
+
+
+It will repeat following:
+ (1) Compare with the adjacent elements
+ (2) Swap them
+
+time: O(n^2)
+
+note: (own summary)
+Every outer loop, we will find the largest element, and put it to the end.
+      unsorted| sorted
+index 0 1 2 3 | 4 5
+            <- Limit value of j
+
+
+following video: https://www.youtube.com/watch?v=nmhjrI-aW5o
+
+public class BubbleSort {
+	public void bubbSort(int[] arr) {
+		int temp;
+		for(int i = 0; i < arr.length - 1; i++){ //outer loop find the largest value and put it to the end.
+			for(int j = 0; j < arr.length -1 - i ; j++){
+				if(arr[j + 1] < arr[j]){ // compare with adjacent elements
+					temp = arr[j]; // swap
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+
+	public void printArray(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			System.out.println(nums[i] + " ");
+		}
+		System.out.println();
+	}
+}
