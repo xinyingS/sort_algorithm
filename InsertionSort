@@ -18,6 +18,8 @@ Recommend to see the following video:
 https://www.youtube.com/watch?v=OGzPmgsI-pQ
 
 
+time: O(n^2)
+
 public class InsertionSort {
 	public void insertSort(int[] arr) {
 		int temp;
