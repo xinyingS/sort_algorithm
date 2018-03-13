@@ -1,0 +1,43 @@
+Insertion Sort
+
+reference from : https://www.geeksforgeeks.org/insertion-sort/
+                 http://www.java2novice.com/java-sorting-algorithms/insertion-sort/
+                 https://www.youtube.com/watch?v=OGzPmgsI-pQ
+
+1. Set a marker for the sorted section after the first element.
+   eg:
+            sorted |  unsorted
+      index  0 | 1 2 3 4 5 6
+
+2. Repeat the following until unsorted section is empty:
+   (1) Select the first unsorted element.
+   (2) Compare with the front elements and keep swapping until sorted array in correct order.
+   (3) Advanced the marker to the right one unsorted element.
+
+Recommend to see the following video:
+https://www.youtube.com/watch?v=OGzPmgsI-pQ
+
+
+public class InsertionSort {
+	public void insertSort(int[] arr) {
+		int temp;
+
+		//iterator all unsorted elements
+        for (int i = 1; i < arr.length; i++) {
+            for(int j = i ; j > 0 ; j--){
+                if(arr[j] < arr[j-1]){//Compare with the front elements
+                    temp = arr[j]; //keep swapping until sorted array in correct order.
+                    arr[j] = arr[j-1];
+                    arr[j-1] = temp;
+                }
+            }
+        }
+	}
+
+	public void printArray(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			System.out.println(nums[i] + " ");
+		}
+		System.out.println();
+	}
+}
