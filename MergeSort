@@ -1,0 +1,64 @@
+Merge Sort
+
+reference from : https://www.youtube.com/watch?v=JSceec-wEyw
+                 https://www.geeksforgeeks.org/merge-sort/
+
+MergeSort is a Divide and Conquer algorithm(Quick sort also D&C). It divides input array in two halves,
+call itself for dividing the two halves, and then merges the two sorted halves.
+
+Two functions:
+(1) mergeSort() -> Recursively calls itself to divide the array till size becomes one.
+(2) merge() -> Used for merging two halves.
+
+(先局部有序再整体有序) -> cut from the middle and repeat it recursively.
+
+time: O(nlogn)
+space: O(n) extra space -> It means we need another temp array.
+
+
+public class MergeSort {
+	public void ms(int[] arr) {
+		if(arr == null || arr.length == 0){
+			return;
+		}
+		int[] temp = new int[arr.length];
+		mergeSort(arr, 0, arr.length - 1, temp);
+	}
+
+	private void mergeSort(int[] arr, int start, int end, int[] temp){// Recursively divide itself into two halves
+		if(start >= end){
+			return;
+		}
+
+		mergeSort(arr, start, (start + end)/2, temp);
+		mergeSort(arr, (start + end)/2 + 1, end, temp);
+		merge(arr, start, end, temp);
+	}
+
+	private void merge(int[] arr, int start, int end, int[] temp){//merge two halves
+		int middle = (start + end) /2;
+		int leftIndex = start;
+		int rightIndex = middle + 1;
+		int index = leftIndex;
+
+		while(leftIndex <= middle && rightIndex <= end){
+			if(arr[leftIndex] < arr[rightIndex]){
+				temp[index ++] = arr[leftIndex ++];
+			}else{
+				temp[index ++] = arr[rightIndex ++];
+			}
+		}
+
+		while(leftIndex <= middle){
+			temp[index ++] = arr[leftIndex ++];
+		}
+
+		while(rightIndex <= end){
+			temp[index ++] = arr[rightIndex ++];
+		}
+
+		for(int i = start; i < end; i++){
+			arr[i] = temp[i];
+		}
+	}
+}
