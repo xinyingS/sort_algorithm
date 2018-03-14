@@ -20,6 +20,7 @@ public class QuickSort {
 		quickSort(nums, 0, nums.length - 1);
 	}
 
+  //(1) Partition && (2) Quick Sort
 	private void quickSort(int[] nums, int start, int end){
 		if(start >= end){
 			return;
@@ -47,6 +48,7 @@ public class QuickSort {
 			}
 		}
 
+    //Quick Sort
 		quickSort(nums, start, right);
 		quickSort(nums, left, end);
 	}
