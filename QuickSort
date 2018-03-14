@@ -14,6 +14,8 @@ quick sort = pivot
 
 
 time: average O(nlogn)
+The following program, using Partition together with Quick Sort, I recommend split it.
+
 
 public class QuickSort {
 	public void qs(int[] nums) {
