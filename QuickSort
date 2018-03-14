@@ -1,6 +1,7 @@
 Quick Sort
 
 quick sort = pivot
+It's also a Divide and Conquer problem.
 是一种先整体有序，再局部有序的sort.
 主要有两个步骤：
 （1）Partition
