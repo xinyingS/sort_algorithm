@@ -16,49 +16,53 @@ time: O(nlogn)
 space: O(n) extra space -> It means we need another temp array.
 
 
+
 public class MergeSort {
-	public void ms(int[] arr) {
-		if(arr == null || arr.length == 0){
-			return;
-		}
-		int[] temp = new int[arr.length];
-		mergeSort(arr, 0, arr.length - 1, temp);
+	public void ms(int[] A) {
+		int[] temp = new int[A.length];
+        mergeSort(A, 0, A.length - 1, temp);
 	}
 
-	private void mergeSort(int[] arr, int start, int end, int[] temp){// Recursively divide itself into two halves
-		if(start >= end){
-			return;
+	private void mergeSort(int[] A, int start, int end, int[] temp) {
+        if (start >= end) {
+            return;
+        }
+
+        int mid = (start + end) / 2;
+
+        mergeSort(A, start, mid, temp);
+        mergeSort(A, mid+1, end, temp);
+        merge(A, start, mid, end, temp);
+    }
+
+    private void merge(int[] A, int start, int mid, int end, int[] temp) {
+        int left = start;
+        int right = mid+1;
+        int index = start;
+
+        while (left <= mid && right <= end) {
+            if (A[left] < A[right]) {
+                temp[index++] = A[left++];
+            } else {
+                temp[index++] = A[right++];
+            }
+        }
+        while (left <= mid) {
+            temp[index++] = A[left++];
+        }
+        while (right <= end) {
+            temp[index++] = A[right++];
+        }
+
+        for (index = start; index <= end; index++) {
+            A[index] = temp[index];
+        }
+    }
+
+	public void printArray(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			System.out.println(nums[i] + " ");
 		}
-
-		mergeSort(arr, start, (start + end)/2, temp);
-		mergeSort(arr, (start + end)/2 + 1, end, temp);
-		merge(arr, start, end, temp);
-	}
-
-	private void merge(int[] arr, int start, int end, int[] temp){//merge two halves
-		int middle = (start + end) /2;
-		int leftIndex = start;
-		int rightIndex = middle + 1;
-		int index = leftIndex;
-
-		while(leftIndex <= middle && rightIndex <= end){
-			if(arr[leftIndex] < arr[rightIndex]){
-				temp[index ++] = arr[leftIndex ++];
-			}else{
-				temp[index ++] = arr[rightIndex ++];
-			}
-		}
-
-		while(leftIndex <= middle){
-			temp[index ++] = arr[leftIndex ++];
-		}
-
-		while(rightIndex <= end){
-			temp[index ++] = arr[rightIndex ++];
-		}
-
-		for(int i = start; i < end; i++){
-			arr[i] = temp[i];
-		}
+		System.out.println();
 	}
 }
