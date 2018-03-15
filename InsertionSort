@@ -26,9 +26,9 @@ public class InsertionSort {
 
 		//iterator all unsorted elements
         for (int i = 1; i < arr.length; i++) {
-            for(int j = i ; j > 0 ; j--){
-                if(arr[j] < arr[j-1]){//Compare with the front elements
-                    temp = arr[j]; //keep swapping until sorted array in correct order.
+            for(int j = i ; j > 0 ; j--){//Compare with the front elements
+                if(arr[j] < arr[j-1]){//keep swapping until sorted array in correct order.
+                    temp = arr[j];
                     arr[j] = arr[j-1];
                     arr[j-1] = temp;
                 }
