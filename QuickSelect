@@ -1,0 +1,70 @@
+Quick Select
+
+Reference from : https://www.youtube.com/watch?v=TlJhgPWM_Kc&t=308s
+
+1. It's a selection algorithm to find Kth largest/ Kth smallest item in an unsorted array.
+
+2. Concepts are similar to Quick sort:
+   (1) Choose a pivot.
+   (2) Partition the array.
+   (3) Instead of recursing into both sides, we just take one side.
+   (4) O(nlogn) -> O(n)
+
+3. Following two procedure:
+   (1) Partition -> In this part, don't care Kth.
+   (2) Select -> (a),(b),(c)
+
+   time: average O(n)
+
+   public class QuickSelect {
+	public int qse(int[] nums, int k) {
+		if(nums == null || nums.length == 0){
+			return -1;
+		}
+
+		return quickSelect(nums, 0, nums.length - 1, k);
+	}
+
+	private int quickSelect(int[] nums, int start, int end, int k){
+		//1.Partition
+		if(start == end){
+			return nums[start];
+		}
+
+		int left = start;
+		int right = end;
+		int pivot = nums[(start + end) / 2];
+
+		while(left <= right){
+
+			while(left <= right && nums[left] > pivot){
+				left ++;
+			}
+
+			while(left <= right && nums[right] < pivot){
+				right --;
+			}
+
+			if(left <= right){
+				int temp = nums[left];
+				nums[left] = nums[right];
+				nums[right] = temp;
+
+				left ++;
+				right --;
+			}
+
+		}
+
+		//2. Quick Select
+		if(start + k - 1 <= right){ //Kth, so k - 1
+			return quickSelect(nums, start, right, k);
+		}
+
+		if(start + k - 1 >= left){
+			return quickSelect(nums, left, end, k - (left - start)); // second part need k - (left - start)
+		}
+
+		return nums[right + 1];
+	}
+}
