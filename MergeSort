@@ -19,7 +19,7 @@ space: O(n) extra space -> It means we need another temp array.
 
 public class MergeSort {
 	public void ms(int[] A) {
-		int[] temp = new int[A.length];
+		    int[] temp = new int[A.length];
         mergeSort(A, 0, A.length - 1, temp);
 	}
 
