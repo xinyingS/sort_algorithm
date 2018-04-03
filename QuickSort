@@ -35,10 +35,10 @@ public class QuickSort {
 
 		//2. left <= right.
 		while(left <= right){
-			while(left <= right && nums[left] < pivot){ // 3. find left > p
+			while(left <= right && nums[left] < pivot){ // 3. left < pivot, logistic find left > p
 				left ++;
 			}
-			while(left <= right && nums[right] > pivot){ // 4. find right < p
+			while(left <= right && nums[right] > pivot){ // 4. right > pivot, logistic find right < p
 				right --;
 			}
 
